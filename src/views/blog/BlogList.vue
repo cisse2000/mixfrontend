@@ -6,6 +6,11 @@
             <v-row>
                 <v-col cols="8" md="4"> 
                     <p>Les données</p>
+
+                    <div v-for="item in data" :key="item.id">
+                        <h3>{{item.title}}</h3>
+                        <p>{{item.content}}</p>
+                    </div>
                 </v-col>
                 <v-col >
                     <p>Image</p>
@@ -36,6 +41,7 @@ import ApiService from '@/services/ClientApiService';
                 api.find('/blogs/')
                 .then( response => {
                     console.log(response.data)
+                    this.data = response.data
                 })
                 .catch(error => {
                     console.log(error.data, "Il ya des erreures")
